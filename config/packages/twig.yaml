@@ -1,0 +1,9 @@
+twig:
+    globals:
+        settings: '@App\Service\Settings\SettingsService'
+        cart: '@App\Service\Cart\CartServiceInterface'
+        discount: '@App\Service\Discount\DiscountService'
+        findOneCheckout: '@App\Service\Checkout\CheckoutService'
+    default_path: '%kernel.project_dir%/templates'
+    form_themes:
+      - bootstrap_4_layout.html.twig

@@ -1,0 +1,217 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MenuController!{% endblock %}
+
+{% block body %}
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-4.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Order Food</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        <h5 class="uk-sub-title-small">The true taste of good design</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    {% for category in categories %}
+        {% if category.sectionImage %}
+            <div id="" class="tm-block-top-d uk-block uk-block-default tm-block-fullwidth tm-grid-collapse">
+                <div class="uk-container uk-container-center">
+                    <section class="tm-top-d uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}"
+                             data-uk-grid-margin>
+
+                        <div class="uk-width-1-1">
+                            <div class="uk-panel uk-text-center uk-contrast tm-header-height tm-overlay-secondary">
+                                <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                                     style="background-position: 50% 0px; background-image:url({{ asset('uploads/categories/'~ category.sectionImage) }})"
+                                     data-uk-parallax="{bg: '-200'}">
+                                    <div class="uk-position-relative uk-container">
+
+                                        <div data-uk-parallax="{opacity: '0,1', scale: '0.75,1', viewport: '0.5'}">
+                                            <h1 class="uk-module-title-alt uk-margin-top">{{ category.sectionTitle }}</h1>
+                                            <h3 class="uk-sub-title">{{ category.sectionDescription }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        {% endif %}
+        {% for msg in app.session.flashBag.get('success-add') %}
+            <!-- create the content of the modal box -->
+            <div id="add-product-cart" class="uk-modal">
+                <div class="uk-modal-dialog uk-panel-box ">
+                    <a class="uk-modal-close uk-close"></a>
+                    <div class="uk-modal-body">
+                        {% for addMenu in allMenu %}
+                            {% if addMenu.id == msg %}
+                                <h3 class="uk-panel-title ">{{ addMenu.title|capitalize }}</h3>
+                                <table>
+                                    <tr>
+                                        <td><img class="border-radius-img"
+                                                 src="{{ (addMenu.menuImage) ? asset('uploads/menu_image/'~ addMenu.menuImage):asset('uploads/menu_image/no_image.png') }}"
+                                                 alt="breakfast" width="150" height="100">
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td><p>
+                                                {{ addMenu.description }}
+                                            </p></td>
+                                    </tr>
+                                </table>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="uk-modal-footer bg-green"><i class="uk-icon-check"></i> Продуктът добавен успешно</div>
+                    <div class="default-center"><br><a href="/cart-checkout" class="uk-button-color uk-button uk-badge-note">Плати поръчката</a></div>
+                </div>
+            </div>
+        {% endfor %}
+        <div id="{{ category.title }}" class="tm-block-top-c uk-block uk-block-default">
+            <div class="uk-container uk-container-center">
+                <section class="tm-top-c uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}"
+                         data-uk-grid-margin>
+                    <div class="uk-width-1-1">
+                        <div class="uk-panel">
+                            <div class="uk-text-center">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:100}">
+                                    <img class="" src="{{ asset('uploads/categories/'~ category.thumbnail) }}"
+                                         alt="breakfast" width="300" height="200">
+                                </div>
+                                <br>
+                                <h3 class="uk-h2 uk-module-title-alt">{{ category.title }}</h3>
+                                <h5 class="uk-margin-top-remove uk-margin-large-bottom">{{ category.description }}</h5>
+                            </div>
+                            <div class="uk-grid uk-grid-width-medium-1-2 uk-grid-width-large-1-3"
+                                 data-uk-grid-margin>
+                                {% for menu in  allMenu %}
+                                    {% if category.id == menu.category.id %}
+                                        {% if category.title!="Dessert" %}
+                                            <div class="uk-panel uk-panel-space">
+                                                <a href="#modal-{{ menu.id }}" data-uk-modal="" data-uk-tooltip
+                                                   title="View">
+                                                    <div class="tm-menu-price">
+                                                        <img class="border-radius-img"
+                                                             src="{{ (menu.menuImage) ? asset('uploads/menu_image/'~ menu.menuImage):asset('uploads/menu_image/no_image.png') }}"
+                                                             alt="breakfast" width="50" height="50">
+                                                    </div>
+                                                </a>
+                                                <div class="tm-menu-item tm-menu-compound">
+                                                    <h3 class="tm-menu-name">{{ menu.title|capitalize }}</h3>
+                                                    {% if menu.promotion %}
+                                                        <div class="uk-badge-danger uk-badge" data-uk-tooltip
+                                                             title="Promotion">hot
+                                                        </div>
+                                                    {% elseif menu.vegetarian %}
+                                                        <div class="uk-badge-note uk-badge-notification uk-badge"
+                                                             data-uk-tooltip title="Vegetarian">v
+                                                        </div>
+                                                    {% endif %}
+                                                    <span class="tm-menu-dots"></span>
+                                                    {% set price = menu.price / 100 %}
+                                                    <span class="tm-menu-price">€ {{ price|number_format(2, '.', ',') }}</span>
+                                                    <span class="tm-menu-desc">{{ menu.description|capitalize }}</span>
+                                                </div>
+                                                <div class="tm-menu-item tm-menu-compound">
+                                                    <form action="{{ path('app_cart_add') }}" method="POST">
+                                                        <input type="hidden" class="uk-width-quality"
+                                                               name="cart[product]" value="{{ menu.id }}">
+                                                        <button class="uk-button-color uk-button-small uk-button default-right"
+                                                                data-uk-tooltip title="Add to cart!"><i
+                                                                    class="uk-icon-shopping-basket"></i> Add to cart
+                                                        </button>
+                                                        <input type="number" class="uk-width-quality"
+                                                               name="cart[quality]" min="1" value="1">
+                                                    </form>
+                                                </div>
+                                                <div id="modal-{{ menu.id }}" class="uk-modal">
+                                                    <div class="uk-modal-dialog uk-panel-box " tabindex="">
+                                                        <a class="uk-modal-close uk-close"></a>
+                                                        <div class=""><h3
+                                                                    class="uk-panel-title ">{{ menu.title|capitalize }}</h3>
+                                                            <p>
+                                                                <span class="tm-block-icon uk-align-left">
+                           <img class="border-radius-img"
+                                src="{{ (menu.menuImage) ? asset('uploads/menu_image/'~ menu.menuImage):asset('uploads/menu_image/no_image.png') }}"
+                                alt="breakfast" width="150" height="150">
+
+                                                                </span>
+                                                                {{ menu.description|capitalize }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="tm-menu-item uk-width-1-3">
+                                                <h3 class="tm-menu-name">{{ menu.title|capitalize }}</h3>
+                                                <span class="tm-menu-dots"></span>
+                                                {% set price = menu.price / 100 %}
+                                                <span class="tm-menu-price">€ {{ price|number_format(2, '.', ',') }}</span>
+                                                <span class="tm-menu-price">
+                                                    <form action="{{ path('app_cart_add') }}" method="POST">
+                                                        <input type="hidden" class="uk-width-quality"
+                                                               name="cart[product]" value="{{ menu.id }}">
+                                                        <button class="uk-button-color uk-button-small uk-button default-right"
+                                                                data-uk-tooltip title="Add to cart!"><i
+                                                                    class="uk-icon-shopping-basket"></i> Add to cart
+                                                        </button>
+                                                        <input type="number" class="uk-width-quality"
+                                                               name="cart[quality]" min="1" value="1">
+                                                    </form>
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                            {% if category.imageLeftTop %}
+                                <img class="tm-img-top-left"
+                                     src="{{ asset('uploads/categories/'~ category.imageLeftTop) }}"
+                                     alt="demo" width="250" height="200">
+                            {% endif %}
+                            {% if category.imageRightBottom %}
+                                <img class="tm-img-bottom-right"
+                                     src="{{ asset('uploads/categories/'~ category.imageRightBottom) }}"
+                                     alt="demo"
+                                     width="250" height="125">
+                            {% endif %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- one page scroller -->
+    <div class="tm-navigation-bar uk-hidden-small uk-hidden-medium">
+        <ul class="uk-dotnav uk-flex-column" data-uk-scrollspy-nav="{closest:'li', smoothscroll:true}">
+            {% for category in categories %}
+                <li><a title="{{ category.title }}" data-uk-tooltip="{pos: 'left', offset: 20}"
+                       href="#{{ category.title }}">Item</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

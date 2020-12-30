@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">{{ user.firstName }} {{ user.lastName }}</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">If you can dream it, you can do it</h5> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="uk-text-center">
+                                            <h2 class="uk-module-title-alt uk-margin-large-top">
+                                                Edit / View profile
+                                            </h2>
+                                            {# <h4 class="uk-sub-title">Founded in 1890</h4> #}
+                                        </div>
+                                        <div class="tm-article-wrapper">
+                                            <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                                <div class="tm-article">
+                                                    <div class="uk-grid" data-uk-grid-margin="">
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-3 uk-row-first"></div>
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-3 uk-row-first">
+{#                                                            <form action="" class="uk-form uk-form-horizontal uk-margin-top">#}
+                                                                <div class="tm-card-content uk-form">
+                                                                    <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1">
+                                                                        <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1"
+                                                                             data-uk-grid-margin="">
+                                                                            <div class="uk-form-icon uk-row-first">
+                                                                                <i class="uk-icon-info-circle"></i>
+                                                                                <input type="text" class="uk-width-1-1" value="{{ user.firstName }}" disabled>
+                                                                            </div>
+                                                                            <div class="uk-form-icon uk-row-first">
+                                                                                <i class="uk-icon-info-circle"></i>
+                                                                                <input type="text" class="uk-width-1-1" value="{{ user.lastName }}" disabled>
+                                                                            </div>
+                                                                            <div class="uk-form-icon uk-row-first">
+                                                                                <i class="uk-icon-calendar"></i>
+                                                                                <input type="text" class="uk-width-1-1"disabled value="{{ user.birthDate }}">
+                                                                            </div>
+                                                                            <div class="uk-form-icon uk-row-first">
+                                                                                <i class="uk-icon-7s-chat"></i>
+                                                                                <input type="text" class="uk-width-1-1" value="{{ user.socialTitle }}" disabled>
+                                                                            </div>
+                                                                            <div class="uk-form-icon uk-row-first">
+                                                                                <i class="uk-icon-7s-mail"></i>
+                                                                                <input type="text" class="uk-width-1-1" value="{{ user.email }}" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    {# <input type="text" placeholder="Date" name="book-date" class="uk-width-1-1" data-uk-datepicker="{format:'DD/MM/YYYY', minDate: 0}" required="required"> #}
+                                                                    {{ form_start(resetForm) }}
+                                                                    {{ form_row(resetForm.plainPassword) }}
+                                                                    <button type="submit" class="uk-button uk-button-default uk-button-large uk-margin-large-top">Reset password</button>
+                                                                    {{ form_end(resetForm) }}
+
+                                                                </div>
+{#                                                            </form>#}
+                                                        </div>
+                                                    </div>
+                                                    <a href="{{ path('app_myaccount') }}" class="uk-badge-note uk-margin-top uk-badge"><i class="uk-icon-angle-left"></i> Back to your account</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

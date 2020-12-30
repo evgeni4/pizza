@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventsController!{% endblock %}
+{% block body %}
+ <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-small-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle" style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})" data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt">Events</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        <h5 class="uk-sub-title-small">Don't miss out on this offer</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <!-- calendar -->
+                                        <div id='loading'>loading...</div>
+                                        <div id='calendar'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
+<script>
+    window.onload = () => {
+        let calendarElt = document.querySelector("#calendar")
+
+        let calendar = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGridWeek',
+            locale: 'en',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth,timeGridWeek'
+            },
+            events: {{ data|raw }},
+            editable: false,
+            eventResizableFromStart: true,
+        })
+        calendar.render()
+    }
+</script>
+{% endblock %}

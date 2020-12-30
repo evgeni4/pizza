@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Your Reservation</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">If you can dream it, you can do it</h5> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="uk-text-center">
+                                            <h2 class="uk-module-title-alt uk-margin-large-top">All reservation </h2>
+                                            {# <h4 class="uk-sub-title">Founded in 1890</h4> #}
+                                        </div>
+                                        <div class="tm-article-wrapper">
+                                            <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                                <div class="tm-article">
+                                                    <div class="uk-grid" data-uk-grid-margin="">
+                                                        {% if reservations %}
+                                                            {% for reservation in reservations %}
+                                                                <div class="uk-form uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-3 uk-row-first">
+                                                                    <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                        <div class="tm-card-content">
+                                                                            <span data-uk-tooltip title="Pending" class="clock-reservation-sm"><img src="{{ asset('assets/images/clock-sm.gif') }}" alt=""></span>
+                                                                            <div class="uk-description-list-horizontal">Reserved from: {{reservation.fullName|capitalize }}</div>
+                                                                            <div class="uk-description-list-horizontal">Of people: {{reservation.guests  }}</div>
+                                                                            <div class="uk-description-list-horizontal">Date: {{reservation.date|date('d-m-y')  }}</div>
+                                                                            <div class="uk-description-list-horizontal">Time: {{reservation.time|date('HH:m') }}</div>
+                                                                            <div class="uk-description-list-horizontal">Phone: 0{{reservation.phone }}</div>
+                                                                            <div class="uk-description-list-horizontal">Reserved at: {{reservation.createdAt|date('d-m-y / H:mm') }} </div>
+                                                                            <div class="">
+                                                                                <a href="{{ path('reservation_delete',{'id':reservation.id}) }}"  class="uk-button-danger uk-button uk-button-small default-right"><i class="uk-icon-trash"></i> Delete</a>
+                                                                                <br>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                            <div class="empty-block"><h3>You have no reserved seats!</h3></div>
+                                                        {% endif %}
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-1 uk-width-large-1-1 uk-row-first">
+                                                            <a href="{{ path('app_myaccount') }}"
+                                                               class="uk-badge-note uk-margin-top uk-badge "><i
+                                                                        class="uk-icon-angle-left"></i> Back to your account</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

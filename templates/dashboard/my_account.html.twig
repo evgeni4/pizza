@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Бек офис</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">If you can dream it, you can do it</h5> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="uk-text-center">
+                                            <h2 class="uk-module-title-alt uk-margin-large-top">
+                                                Добре дошли, {{ user.firstName }} {{ user.lastName }}
+                                            </h2>
+                                            {# <h4 class="uk-sub-title">Founded in 1890</h4> #}
+                                        </div>
+                                        <div class="tm-article-wrapper">
+                                            <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                                <div class="tm-article">
+                                                    <div class="uk-grid" data-uk-grid-margin="">
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-4 uk-row-first">
+                                                            <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                <div class="tm-card-content">
+                                                                    <div class="default-center icon-p"><i class="uk-icon-user-secret"></i></div>
+                                                                   <div class="default-center"> <h3 class="uk-panel-title">Информация</h3></div>
+                                                                    <div class="default-center"><a href="{{ path('app_profile') }}"><h4 class="tm-card-title">Профил</h4></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-4 uk-row-first">
+                                                            <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                <div class="tm-card-content">
+                                                                    <div class="default-center icon-p"><i class="uk-icon-map-marker"></i></div>
+                                                                   <div class="default-center"> <h3 class="uk-panel-title">Адреси</h3></div>
+                                                                    <div class="default-center"><a href="{{ path('app_address') }}"><h4 class="tm-card-title">Моите адреси</h4></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-4 uk-row-first">
+                                                            <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                <div class="tm-card-content">
+                                                                    <div class="default-center icon-p"><i class="uk-icon-dollar"></i></div>
+                                                                   <div class="default-center"> <h3 class="uk-panel-title">История на поръчките</h3></div>
+                                                                    <div class="default-center"><a href="{{ path('app_order_history') }}"><h4 class="tm-card-title">Моите поръчките</h4></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-4 uk-row-first">
+                                                            <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                <div class="tm-card-content">
+                                                                    <div class="default-center icon-p"><i class="uk-icon-percent"></i></div>
+                                                                   <div class="default-center"> <h3 class="uk-panel-title">Отстъпки</h3></div>
+                                                                    <div class="default-center"><a href="{{ path('app_discount') }}"><h4 class="tm-card-title">Карта за отстъпка</h4></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-small-1-1 uk-width-medium-1-4 uk-width-large-1-4 uk-row-first">
+                                                            <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                <div class="tm-card-content">
+                                                                    <div class="default-center icon-p"><i class="icon-2" style="font-size: 80px"></i></div>
+                                                                   <div class="default-center"> <h3 class="uk-panel-title">Резервации</h3></div>
+                                                                    <div class="default-center"><a href="{{ path('app_reservations_user') }}"><h4 class="tm-card-title">Моите на резервации</h4></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

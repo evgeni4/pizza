@@ -1,0 +1,459 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse tm-gradient-header" >
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+                <div class="uk-width-1-1">
+                    <div class="uk-panel">
+
+                        <!-- slideshow -->
+                        <div class="tm-slideshow-gaucho uk-slidenav-position" data-uk-slideshow="{autoplay:true, animation: 'scale', pauseOnHover: true, duration: 750, autoplayInterval: 15000, kenburns: true, kenburnsanimations: 'uk-animation-top-center'}">
+                            <ul class="uk-slideshow uk-overlay-active">
+                                {% for slider in sliders %}
+                                <li>
+                                    <img src="{{ asset('uploads/slider_image/'~slider.image) }}" width="1200" height="500" alt="demo">
+                                    <div class="uk-overlay-panel uk-flex uk-flex-middle uk-overlay-slide-left">
+                                        <div>
+                                            <h3>{{ slider.title }}</h3>
+                                            <div class="uk-margin">
+                                                <p>{{ slider.description }}</p>
+                                            </div>
+{#                                            <a class="uk-button-default uk-button-large uk-button" href="index.html#" target="_self">Learn more</a>#}
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <!-- slide navigation buttons -->
+                            <div class="uk-margin">
+                                <ul class="uk-dotnav uk-flex-right uk-hidden-touch">
+                                        {% for slider in sliders %}
+                                            <li data-uk-slideshow-item="{{ slider.id }}"><a href="#"></a></li>
+                                        {% endfor %}
+                                </ul>
+                            </div>
+
+                            <!-- slide navigation arrows -->
+                            <div class="tm-slidenav uk-flex uk-flex-right uk-flex-middle">
+                                <a href="#" class="uk-slidenav uk-slidenav-previous uk-hidden-touch" data-uk-slideshow-item="previous"></a>
+                                <a href="#" class="uk-slidenav uk-slidenav-next uk-hidden-touch" data-uk-slideshow-item="next"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- logo -->
+    <div id="tm-logo">
+        <div class="uk-container uk-container-center">
+            <a class="tm-logo uk-hidden-small uk-flex uk-flex-middle uk-flex-center">
+                <img src="{{ asset('uploads/logo_site/'~ settings.findOneSettings.logoBottom) }}" width="300" height="120" alt="demo">
+            </a>
+        </div>
+    </div>
+    <div class="tm-header-box">
+        <div class="uk-container uk-container-center">
+            <!-- header b -->
+            <div id="tm-header-b" class="tm-block-header-b uk-block tm-padding-remove uk-block-default" >
+                <section class="tm-header-b uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>
+                    <div class="uk-width-1-1 uk-width-medium-1-3">
+                        <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-text-center">
+
+                            <div class="uk-text-center">
+                                <h3 class="tm-quote">good food is like music to the stomach. Every bite makes you want to dance</h3>
+                            </div>
+
+                            <img class="tm-img-bottom" src="{{ asset('assets/images/demo/default/content/dish-6.png') }}" alt="demo" width="400" height="260"></div></div>
+
+                    <div class="uk-width-1-1 uk-width-medium-2-3">
+                        <div class="uk-panel uk-panel-box uk-text-center">
+
+                            <h1 class="uk-module-title-alt">Great food. Tastes good.</h1>
+                            <h3 class="uk-sub-title"> If you can dream it, you can do it.</h3>
+                            <p>Learn from the past, set vivid, detailed goals for the future, and live in the only moment of time over which you have any control: now. Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence. If you can dream it, you can do it. Do it now, not tomorrow. Always continue the climb. It is possible for you to do.</p>
+                            <br>
+
+                            <a class="uk-button-primary uk-button-large uk-button" href="{{ path('app_menu') }}" target="_self">See the menu</a>
+                            <a class="uk-button-secondary uk-margin-left uk-button-large uk-button" href="{{ path('app_reservations') }}" target="_self">Make reservations</a>
+
+                            <img class="tm-img-bottom-right" src="{{ asset('assets/images/demo/default/overlay/overlay-1.png') }}" alt="demo" width="250" height="185">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- top-a -->
+    <div id="tm-top-a" class="tm-block-top-a uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <section class="tm-top-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center">
+
+                        <h2 class="uk-module-title-alt uk-margin-large-bottom">Our most loved dishes</h2>
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-4">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:100}">
+                                    <h3 class="tm-primary-color uk-margin-small">Beef Medallion</h3>
+                                    <ul class="tm-rating">
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                    </ul>
+                                    <img src="{{ asset('assets/images/demo/default/content/dish-1.png') }}" alt="demo" width="180" height="180">
+                                    <p>Sumptuous delicious food baked in our restaurants with curated ingredients</p>
+                                    <p class="tm-price">$ 9.50</p>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-medium-1-4">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:300}">
+                                    <h3 class="tm-primary-color uk-margin-small">Penne arrabiata</h3>
+                                    <ul class="tm-rating">
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                    </ul>
+                                    <img src="{{ asset('assets/images/demo/default/content/dish-2.png') }}" alt="demo" width="180" height="180">
+                                    <p>Sumptuous delicious food baked in our restaurants with curated ingredients</p>
+                                    <p class="tm-price">$ 5.50</p>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-medium-1-4">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:500}">
+                                    <h3 class="tm-primary-color uk-margin-small">Sweet &amp; spicy chicken</h3>
+                                    <ul class="tm-rating">
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                    </ul>
+                                    <img src="{{ asset('assets/images/demo/default/content/dish-3.png') }}" alt="demo" width="180" height="180">
+                                    <p>Sumptuous delicious food baked in our restaurants with curated ingredients</p>
+                                    <p class="tm-price">$ 10.50</p>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-medium-1-4">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:700}">
+                                    <h3 class="tm-primary-color uk-margin-small">Thai chicken curry</h3>
+                                    <ul class="tm-rating">
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                        <li><i class="uk-icon-star"></i></li>
+                                    </ul>
+                                    <img src="{{ asset('assets/images/demo/default/content/dish-4.png') }}" alt="demo" width="180" height="180">
+                                    <p>Sumptuous delicious food baked in our restaurants with curated ingredients</p>
+                                    <p class="tm-price">$ 8.50</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- top-b -->
+    <div id="tm-top-b" class="tm-block-top-b uk-block uk-block-default tm-inner-shadow tm-overlay-secondary" data-uk-parallax="{bg: '-200'}" style="background-image: url({{ asset('assets/images/background/bg-1.jpg') }});">
+        <div class="uk-container uk-container-center">
+            <section class="tm-top-b uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast">
+
+                        <h2 class="uk-module-title-alt uk-margin-large-bottom">Today's Specials</h2>
+                        <div class="tm-slideset-gaucho uk-contrast" data-uk-slideset="{default: 1,small: 2,medium: 2,large: 3, xlarge: 3, animation: 'fade'}">
+
+                            <!-- data filters -->
+                            <ul class="uk-subnav uk-flex-center">
+                                <li data-uk-filter=""><a href="#">All</a></li>
+                                {% for specials in categorySpecials %}
+                                    <li data-uk-filter="{{ specials.title }}"><a href="#">{{ specials.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <!-- slide panels -->
+                            <div class="uk-slidenav-position uk-margin">
+                                <ul class="uk-grid uk-slideset uk-grid-match uk-flex-center">
+                                    {% for special in specials %}
+                                    <li data-uk-filter="{{ special.specialCategory.title }}">
+                                        <div class="uk-panel uk-panel-box uk-panel-box-hover uk-overlay-hover uk-text-left">
+                                            <a data-uk-lightbox="{group:'slideset'}" class="uk-position-cover uk-position-z-index" href="{{ asset('uploads/menu_image/'~special.image) }}"></a>
+                                            <div class="uk-text-center uk-panel-teaser">
+                                                <div class="uk-overlay ">
+                                                    <img src="{{ asset('uploads/menu_image/'~special.image) }}" class="uk-overlay-scale" alt="{{ special.specialCategory.title }}" width="400" height="300">
+                                                    <div class="uk-overlay-panel uk-overlay-background uk-overlay-icon uk-overlay-fade"></div>
+                                                </div>
+                                            </div>
+                                            <h3 class="uk-panel-title">{{ special.title }}</h3>
+                                            {{ special.description }}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="index.html" class="uk-slidenav uk-slidenav-previous uk-hidden-touch" data-uk-slideset-item="previous"></a>
+                                <a href="index.html" class="uk-slidenav uk-slidenav-next uk-hidden-touch" data-uk-slideset-item="next"></a>
+                            </div>
+
+                            <!-- slideset navigation -->
+                            <ul class="uk-slideset-nav uk-dotnav uk-flex-center uk-margin-bottom-remove">
+                                <li data-uk-slideset-item="0"><a></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- top-c -->
+    <div id="tm-top-c" class="tm-block-top-c uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <section class="tm-top-c uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>
+
+                <div class="uk-width-1-1 uk-width-medium-1-3">
+                    <div class="uk-panel uk-text-center">
+
+                        <img class="tm-img-top-left" src="{{ asset('assets/images/demo/default/overlay/overlay-2.png') }}" alt="demo" width="250" height="125">
+
+                        <br>
+                        <h1 class="uk-module-title-alt uk-margin-large-top uk-margin-bottom-small">Our menu</h1>
+                        <h3 class="uk-sub-title">Goodness &amp; Taste</h3>
+
+                        <p class="tm-padding-small-sides">
+                            Sumptuous delicious food baked in open ovens with spices
+                        </p>
+
+                        <br>
+                        <a class="uk-button-default uk-button-large uk-button" href="{{ path('app_menu') }}" target="_self">See the menu</a>
+
+                        <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:100}">
+                            <img class="tm-img-bottom-center" src="{{ asset('assets/images/demo/default/content/dish-5.png') }}" alt="demo" width="340" height="230">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-1-1 uk-width-medium-2-3">
+                    <div class="uk-panel">
+
+                        <div class="uk-grid uk-grid-width-medium-1-2 uk-grid-width-large-1-2" data-uk-grid-margin>
+                            <div class="uk-panel uk-panel-space">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:500}">
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Chicken schnitzel</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 6.50</span>
+                                        <span class="tm-menu-desc">Chicken breast . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Fish cakes</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 8.50</span>
+                                        <span class="tm-menu-desc">Caramelized onions . tomatoes . mashed potatoes. tilapia</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Sweet &amp; spicy chicken</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 6.50</span>
+                                        <span class="tm-menu-desc">Chicken breast . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Thai red curry</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 7.50</span>
+                                        <span class="tm-menu-desc">Chicken . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-panel uk-panel-space">
+                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:700}">
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Chicken schnitzel</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 6.50</span>
+                                        <span class="tm-menu-desc">Chicken breast . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Fish cakes</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 8.50</span>
+                                        <span class="tm-menu-desc">Caramelized onions . tomatoes . mashed potatoes. tilapia</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Sweet &amp; spicy chicken</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 6.50</span>
+                                        <span class="tm-menu-desc">Chicken breast . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                    <div class="tm-menu-item tm-menu-compound">
+                                        <h3 class="tm-menu-name">Thai red curry</h3>
+                                        <span class="tm-menu-dots"></span>
+                                        <span class="tm-menu-price">$ 7.50</span>
+                                        <span class="tm-menu-desc">Chicken . spiced bread crumbs . chips or mashed potatoes . aioli sauce</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="tm-img-bottom-right" src="{{ asset('assets/images/demo/default/overlay/overlay-3.png') }}" alt="demo" width="250" height="200">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- bottom-a -->
+{#    <div id="tm-bottom-a" class="tm-block-bottom-a uk-block uk-block-secondary">#}
+{#        <div class="uk-container uk-container-center">#}
+{#            <section class="tm-bottom-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>#}
+{#                <div class="uk-width-1-1">#}
+{#                    <div class="uk-panel">#}
+
+{#                        <div class="uk-grid" data-uk-grid-margin>#}
+
+{#                            <div class="uk-width-medium-1-2">#}
+{#                                <h2 class="uk-margin-small-top">Drop us your email address and stay connected</h2>#}
+{#                            </div>#}
+
+{#                            <div class="uk-width-medium-1-2">#}
+
+{#                                <!-- subscription form -->#}
+{#                                <form id="subscribe_form" class="uk-form">#}
+
+{#                                    <div id="alert-msg-subscribe" class="alert-msg"></div>#}
+
+{#                                    <div class="uk-grid" data-uk-grid-margin>#}
+
+{#                                        <div class="uk-width-medium-2-5">#}
+{#                                            <div>#}
+{#                                                <input type="text" placeholder="Your name" name="subscribe-name"#}
+{#                                                       class="uk-width-1-1" required="required">#}
+{#                                            </div>#}
+{#                                        </div>#}
+
+{#                                        <div class="uk-width-medium-2-5">#}
+{#                                            <div>#}
+{#                                                <input type="email" placeholder="Email address" name="subscribe-email"#}
+{#                                                       class="uk-width-1-1" required="required">#}
+{#                                            </div>#}
+{#                                        </div>#}
+
+{#                                        <div class="uk-width-medium-1-5">#}
+{#                                            <div class="form-group uk-margin-remove">#}
+{#                                                <button id="subscribe_button" type="submit"#}
+{#                                                        class="uk-button uk-button-primary uk-button-large">Subscribe#}
+{#                                                </button>#}
+{#                                            </div>#}
+{#                                        </div>#}
+
+{#                                    </div>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </section>#}
+{#        </div>#}
+{#    </div>#}
+    <!-- bottom-d -->
+    <div id="tm-bottom-d" class="tm-block-bottom-d uk-block uk-block-default tm-inner-shadow tm-overlay-secondary"
+         data-uk-parallax="{bg: '-200'}"
+         style="background-image: url({{ asset('assets/images/background/bg-image-11.jpg') }});">
+        <div class="uk-container uk-container-center">
+            <section class="tm-bottom-d uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin>
+
+                <div class="uk-width-1-1 uk-width-medium-1-3">
+                    <div class="uk-panel uk-contrast">
+
+                        <h2 class="uk-module-title-alt uk-margin-large-top">Where we are</h2>
+
+                        <p>{{ settings.findOneSettings.slogan }}</p>
+
+                        <h2 class="uk-module-title-alt uk-margin-large-top">Address</h2>
+                        <p> {{ settings.findOneSettings.address }}</p>
+                    </div>
+                </div>
+
+                <div class="uk-width-1-1 uk-width-medium-1-3">
+                    <div class="uk-panel uk-contrast">
+
+                        <h2 class="uk-module-title-alt uk-margin-large-top">Open Hours</h2>
+                        {% for openHour  in settings.findOneSettings.openHours  %}
+                        <dl class="uk-description-list-horizontal">
+                            <div>{{ openHour }}</div>
+{#                            <dd>8:00 am to 10:00 pm</dd>#}
+                        </dl>
+                        {% endfor %}
+
+                        <br>
+
+                        <h2 class="uk-module-title-alt uk-margin-large-top">From the Chef</h2>
+                        <img class="uk-align-left uk-margin-large-right"
+                             src="{{ asset('assets/images/demo/avatar/client-5.png') }}" alt="chef" width="120"
+                             height="160">
+                        <p>
+                            "Do it now, not tomorrow. Always continue the climb. It is possible for you to do."
+                        </p>
+
+                        <div class="uk-text-right">
+                            <img src="{{ asset('assets/images/demo/signature/sign-1-white.png') }}" alt="chef" width="200"
+                                 height="80">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-1-1 uk-width-medium-1-3">
+                    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-text-center">
+                        <!-- reservation form -->
+                        <h3 class="uk-module-title-alt">Reservations</h3>
+                            {{ form_start(form, { 'attr': {'class': 'uk-form uk-form-horizontal uk-margin-top','id':'uk-form'}}) }}
+                            <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1" data-uk-grid-margin>
+                                <div class="uk-form-icon">
+                                    <i class="uk-icon-info-circle"></i>
+                                      {{ form_label(form.fullName) }}
+                                        {% set name = (app.user)?[user.firstName|capitalize,user.lastName|capitalize]|join(' '):'' %}
+                                        {{ form_widget(form.fullName, {'attr': {'class':'uk-width-1-1','value':name }}) }}
+                                </div>
+                                <div class="uk-form-icon">
+                                    <i class="uk-icon-users"></i>
+                                    {{ form_label(form.guests) }}
+                                     {{ form_widget(form.guests,{'attr':{'class':'uk-width-1-1'}}) }}
+                                </div>
+                                <div class="uk-form-icon">
+                                    <i class="uk-icon-calendar"></i>
+                                    {{ form_label(form.date) }}
+                                    {{ form_widget(form.date,{'attr':{'data-uk-datepicker':"{format:'DD-MM-YYYY', minDate: +1}",'class':'uk-width-1-1'}}) }}
+                                </div>
+                                <div class="uk-display-block uk-form-icon" data-uk-timepicker= '{format:"24h", start:9, end: 22}'>
+                                    <i class="uk-icon-clock-o"></i>
+                                    {{ form_label(form.time) }}
+                                    {{ form_widget(form.time,{'attr':{'class':'uk-width-1-1',}}) }}
+                                </div>
+                                <div class="uk-form-icon">
+                                    {{ form_label(form.phone) }}
+                                    <i class="uk-icon-phone"></i>
+                                    {{ form_widget(form.phone,{'attr':{'class':'uk-width-1-1'}}) }}
+                                </div>
+                                <div class="form-group uk-margin-remove">
+               <button type="submit" class="uk-button uk-button-default uk-button-large uk-margin-large-top">Reserve Table  </button>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

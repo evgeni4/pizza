@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Registration</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">If you can dream it, you can do it</h5> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="uk-text-center">
+                                            <h2 class="uk-module-title-alt uk-margin-large-top">Create new account</h2>
+                                            {# <h4 class="uk-sub-title">Founded in 1890</h4> #}
+                                        </div>
+
+                                        <div class="uk-grid uk-grid-width-medium-1-2 uk-grid-width-large-1-2"
+                                             data-uk-grid-margin>
+                                            <div class="uk-panel uk-panel-space">
+                                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:100}">
+                                                    <div class="tm-dropcap-block">
+                                                        {{ form_start(registrationForm, { 'attr': {'class': 'uk-form uk-form-horizontal uk-margin-top'}}) }}
+                                                        <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1">
+                                                            <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1"
+                                                                 data-uk-grid-margin="">
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.firstName) }}
+                                                                    <i class="uk-icon-info-circle" style="margin-top:-7px "></i>
+                                                                    {{ form_widget(registrationForm.firstName) }}
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.lastName) }}
+                                                                    <i class="uk-icon-info-circle" style="margin-top:-7px "></i>
+                                                                    {{ form_widget(registrationForm.lastName) }}
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.birthDate) }}
+                                                                    <i class="uk-icon-calendar"
+                                                                       style="margin-top:-7px "></i>
+                                                                    {{ form_widget(registrationForm.birthDate) }}
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.socialTitle) }}
+                                                                    {{ form_widget(registrationForm.socialTitle) }}
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.email) }}
+                                                                    <i class="uk-icon-7s-voicemail" style="margin-top:-7px "></i>
+                                                                    {{ form_widget(registrationForm.email) }}
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    {{ form_label(registrationForm.plainPassword) }}
+                                                                    <i class="uk-icon-7s-key" style="margin-top:-7px "></i>
+                                                                    {{ form_widget(registrationForm.plainPassword) }}
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        {# <input type="text" placeholder="Date" name="book-date" class="uk-width-1-1" data-uk-datepicker="{format:'DD/MM/YYYY', minDate: 0}" required="required"> #}
+                                                        <button type="submit"
+                                                                class="uk-button uk-button-default uk-button-large uk-margin-large-top">
+                                                            Save
+                                                        </button>
+                                                        {{ form_end(registrationForm) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-panel uk-panel-space">
+                                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:300}">
+                                                    <img class="uk-thumbnail"
+                                                         src="{{ asset('assets/images/demo/default/content/dish-6.png') }}"
+                                                         alt="about us"
+                                                         width="490" height="250">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

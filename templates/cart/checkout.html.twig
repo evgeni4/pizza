@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Плащане{% endblock %}
+
+{% block body %}
+    <link href="{{ asset('assets/smartwizard/css/smart_wizard_all.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/smartwizard/css/smart_wizard_arrows.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/smartwizard/css/smart_wizard_dots.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- header-a -->
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-15.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Плащане</h1>
+                                    </div>
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">Не пропускайте тази оферта</h5> #}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="tm-article-wrapper">
+                                            <form action="" method="post">
+                                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                                    <div class="tm-article">
+                                                        <div class="uk-grid" data-uk-grid-margin="">
+                                                            <div class="uk-form uk-width-small-1-1 uk-width-medium-2-3  uk-width-large-2-3 uk-row-first">
+                                                                {# Smart tabs #}
+                                                                <div id="smartwizard">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            <a class="nav-link" href="#step-1">
+                                                                                <h4 class="form-error-message">Адрес на доставка</h4>
+                                                                                {{ form_errors(form.address) }}
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="nav-link" href="#step-2">
+                                                                                <h4 class="form-error-message">Тип на поръчка</h4>
+                                                                                {{ form_errors(form.delivery) }}
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="nav-link" href="#step-3">
+                                                                                <h4>Потвърди поръчката</h4>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div id="step-1" class="tab-pane"
+                                                                             role="tabpanel">
+                                                                            <h3 class="uk-panel-title">Адрес на доставка</h3>
+                                                                            <div class="uk-grid">
+                                                                                {% for address in addresses %}
+                                                                                    <div class="uk-form uk-width-small-1-1 uk-width-medium-1-2 uk-width-large-1-2 uk-row-first">
+                                                                                        <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                                            <div class="tm-card-content">
+                                                                                                <input type="radio"
+                                                                                                       id="current_{{ address.id }}"
+                                                                                                       name="checkout[address]"
+                                                                                                       value="{{ address.id }}">
+                                                                                                <label for="current_{{ address.id }}"
+                                                                                                       style="cursor:pointer">
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        Full
+                                                                                                        name: {{ address.firstName|capitalize }} {{ address.lastName|capitalize }}</div>
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        State: {{ address.state|capitalize }}</div>
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        City: {{ address.city|capitalize }}</div>
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        Zip: {{ address.zip }}</div>
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        Address: {{ address.address|capitalize }}</div>
+                                                                                                    {% if address.addressComplement %}
+                                                                                                        <div class="uk-description-list-horizontal">
+                                                                                                            Address
+                                                                                                            complement: {{ address.addressComplement|capitalize }}</div>
+                                                                                                    {% endif %}
+                                                                                                    <div class="uk-description-list-horizontal">
+                                                                                                        Phone:
+                                                                                                        0{{ address.phone }}</div>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div id="step-2" class="tab-pane"
+                                                                             role="tabpanel">
+                                                                            <h3 class="uk-panel-title">Тип на поръчка</h3>
+                                                                            <div class="uk-grid">
+                                                                                {% for delivery in deliveries %}
+                                                                                    <div class="uk-form uk-width-small-1-1 uk-width-medium-1-3 uk-width-large-1-3 uk-row-first">
+                                                                                        <div class="uk-panel uk-panel-box tm-panel-card">
+                                                                                            <div id="taxBlock_{{ delivery.id }}"
+                                                                                                 class="tm-card-content">
+                                                                                                <input type="radio"
+                                                                                                       id="current_{{ delivery.id }}"
+                                                                                                       name="checkout[delivery]"
+                                                                                                       value="{{ delivery.id }}"
+                                                                                                       onclick="priceTax{{ delivery.id }}()">
+                                                                                                <label for="current_{{ delivery.id }}"
+                                                                                                       style="cursor:pointer">
+                                                                                                    <div class="uk-description-list-horizontal">{{ delivery.title|capitalize }}</div>
+                                                                                                    {% set priceTax = delivery.price/100 %}
+                                                                                                    <div id="priceTax{{ delivery.id }}"
+                                                                                                         class="uk-description-list-horizontal">{{ priceTax|number_format(2, '.', ',') }}
+                                                                                                        €
+                                                                                                    </div>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <script>
+                                                                                        function priceTax{{ delivery.id }}() {
+                                                                                            var priceTax = document.getElementById("priceTax{{ delivery.id }}").innerHTML;
+                                                                                            var total = document.getElementById("totals").value;
+                                                                                            var sum = parseFloat(priceTax) + parseFloat(total);
+                                                                                            document.getElementById("tax").innerHTML = priceTax;
+                                                                                            document.getElementById("totalSum").innerHTML = sum.toFixed(2) + " €";
+
+                                                                                        }
+                                                                                    </script>
+                                                                                {% endfor %}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div id="step-3" class="tab-pane default-center"  role="tabpanel">
+                                                                            <button type="submit" class="uk-button-color uk-button uk-button-small uk-badge-note">Потвърди</button>
+{#                                                                            <script>#}
+{#                                                                                function priceTax{{ delivery.id }}() {#}
+{#                                                                                    var priceTax = document.getElementById("priceTax{{ delivery.id }}").innerHTML;#}
+{#                                                                                    var total = document.getElementById("totals").value;#}
+{#                                                                                    var sum = parseFloat(priceTax) + parseFloat(total);#}
+{#                                                                                    document.getElementById("tax").innerHTML = priceTax;#}
+{#                                                                                    document.getElementById("totalSum").innerHTML = sum.toFixed(2) + " €";#}
+
+{#                                                                                }#}
+{#                                                                            </script>#}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {# Smart tabs End #}
+                                                            </div>
+                                                            <div class="tm-sidebar-b uk-width-medium-1-3">
+                                                                <div id="fixed"
+                                                                     class="uk-panel uk-panel-box default-padding">
+                                                                    <div class="cart-detailed-totals">
+                                                                        <div class="card-block">
+                                                                            <div class="cart-summary-line">
+                                                                                <span class="label js-subtotal">{{ cart.allByUser|length }} артикул(а)</span>
+                                                                                <span class="value default-right">
+                                                                                {% for carts in cart.allByUser %}
+                                                                                    {% set total =  total + (carts.product.price/100) * carts.quality %}
+                                                                                {% endfor %}
+                                                                                    {% set total = total/2 %}
+                                                                                    {{ total|number_format(2, '.', ',') }} €
+                                                                            </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="separator">
+                                                                        <div class="card-block">
+                                                                            <div class="cart-summary-line cart-total">
+                                                                                <div class="cart-summary-line">
+                                                                                    <span class="label">Доставка:</span>
+                                                                                    <span id="tax"
+                                                                                          class="value default-right">
+                                                                                {% set tax =  0 %}
+                                                                                        {{ tax|number_format(2, '.', ',') }} €
+                                                                                        <input type="hidden"  value="{{ tax }}">
+                                                                            </span>
+                                                                                    <div><small class="value"></small>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="cart-summary-line">
+                                                                                    {% set percents = (discount.findByDiscountUser) ? discount.findByDiscountUser.percent:0 %}
+                                                                                    {% set discountId = (discount.findByDiscountUser) ? discount.findByDiscountUser.id:false %}
+                                                                                    <span class="label">Отстъпка:</span>
+                                                                                    <span class="value default-right">
+                                                                               {{ percents }}  %
+                                                                                        <input type="hidden"
+                                                                                               name="checkout[discount]"
+                                                                                               value="{{ discountId }}">
+                                                                            </span>
+                                                                                </div>
+                                                                                {% set totalSum = total-(total*percents/100) %}
+                                                                                <span class="label">Междинна сума:</span>
+                                                                                <span class="value default-right"> {{ totalSum|number_format(2, '.', ',') }} €</span>
+                                                                            </div>
+                                                                            <hr class="separator">
+                                                                            <div class="cart-summary-line cart-total">
+                                                                                {% set totalSum = total-(total*percents/100) %}
+                                                                                <span class="label">Общо:</span>
+                                                                                <input id="totals" type="hidden"
+                                                                                       value="{{ totalSum }}">
+                                                                                <span id="totalSum"
+                                                                                      class="value default-right"> {{ totalSum|number_format(2, '.', ',') }} €</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{ form_row(form._token) }}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- header-a -->
+    {% if error %}
+        <div id="error-message" class="uk-modal">
+            <div class="uk-modal-dialog uk-panel-box uk-modal-dialog-small">
+                <div class="error-icon"><i class="uk-icon-hand-stop-o"></i></div>
+                <div class="message-error"><h4>{{ error.messageKey|trans(error.messageData, 'security') }}</h4></div>
+            </div>
+        </div>
+    {% endif %}
+    <div id="tm-header-a" class="tm-block-header-a uk-block uk-block-default tm-block-fullwidth tm-grid-collapse ">
+        <div class="uk-container uk-container-center">
+            <section class="tm-header-a uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}">
+
+                <div class="uk-width-1-1">
+                    <div class="uk-panel uk-text-center uk-contrast tm-overlay-secondary tm-header-height">
+                        <div class="tm-background-cover uk-cover-background uk-flex uk-flex-center uk-flex-middle"
+                             style="background-position: 50% 0px; background-image:url({{ asset('assets/images/background/bg-image-12.jpg') }})"
+                             data-uk-parallax="{bg: '-200'}">
+                            <div class="uk-position-relative uk-container">
+
+                                <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
+                                        <h1 class="uk-module-title-alt uk-margin-top">Authorisation</h1>
+                                    </div>
+
+                                    <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
+                                        {# <h5 class="uk-sub-title-small">If you can dream it, you can do it</h5> #}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content -->
+    <div id="tm-main" class="tm-block-main uk-block uk-block-default">
+        <div class="uk-container uk-container-center">
+            <div class="tm-middle uk-grid" data-uk-grid-match data-uk-grid-margin>
+                <div class="tm-main uk-width-medium-1-1">
+                    <main id="tm-content" class="tm-content">
+                        <article class="uk-article tm-article">
+                            <div class="tm-article-wrapper">
+                                <div class="tm-article-content uk-margin-large-bottom uk-margin-top-remove">
+                                    <div class="tm-article">
+                                        <div class="uk-text-center">
+                                            <h2 class="uk-module-title-alt uk-margin-large-top">Login</h2>
+                                            {# <h4 class="uk-sub-title">Founded in 1890</h4> #}
+                                        </div>
+
+                                        <div class="uk-grid uk-grid-width-medium-1-2 uk-grid-width-large-1-2"
+                                             data-uk-grid-margin>
+                                            <div class="uk-panel uk-panel-space">
+                                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:100}">
+                                                    <div class="tm-dropcap-block">
+                                                        <form method="post"
+                                                              class="uk-form uk-form-horizontal uk-margin-top">
+{#                                                            {% if error %}#}
+{#                                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#                                                            {% endif %}#}
+
+                                                            {% if app.user %}
+                                                                <div class="mb-3">
+                                                                    You are logged in as {{ app.user.username }}, <a
+                                                                            href="{{ path('app_logout') }}">Logout</a>
+                                                                </div>
+                                                            {% endif %}
+                                                            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                                                            <div class="uk-grid uk-grid-width-medium-1-1 uk-grid-width-1-1"
+                                                                 data-uk-grid-margin="">
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    <i class="uk-icon-info-circle"></i>
+                                                                    <input type="email" value="{{ last_username }}"  name="email" id="inputEmail"  class="uk-width-1-1" placeholder="Email" required="required" autofocus>
+                                                                </div>
+                                                                <div class="uk-form-icon uk-row-first">
+                                                                    <i class="uk-icon-info-circle"></i>
+                                                                    <input type="password" name="password"  id="inputPassword"  placeholder="Password" class="uk-width-1-1" required>
+                                                                </div>
+                                                                {#
+                                                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                                                <div class="checkbox mb-3">
+                                                                    <label>
+                                                                        <input type="checkbox" name="_remember_me"> Remember me
+                                                                    </label>
+                                                                </div>
+                                                                #}
+                                                                <div class="form-group uk-margin-remove uk-grid-margin uk-row-first">
+                                                                    <br>
+                                                                    <button class="uk-button uk-button-default uk-button-large uk-margin-large-topy"
+                                                                            type="submit">
+                                                                        Sign in
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+                                                        </form>
+                                                        <a href="{{ path('app_forgot_password_request') }}">Forgot password?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-panel uk-panel-space">
+                                                <div data-uk-scrollspy="{cls:'uk-animation-slide-bottom', delay:300}">
+                                                    <img class="uk-thumbnail"
+                                                         src="{{ asset('assets/images/demo/default/content/dish-6.png') }}"
+                                                         alt="about us"
+                                                         width="490" height="250">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
