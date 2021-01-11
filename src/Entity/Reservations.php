@@ -65,6 +65,11 @@ class Reservations
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $confirmed;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -156,6 +161,18 @@ class Reservations
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getConfirmed(): ?bool
+    {
+        return $this->confirmed;
+    }
+
+    public function setConfirmed(?bool $confirmed): self
+    {
+        $this->confirmed = $confirmed;
 
         return $this;
     }

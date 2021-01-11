@@ -15,4 +15,6 @@ interface ReservationsServiceInterface
     public function getOnById(int $id):?Reservations;
 
     public function delete(Reservations $reservations):bool;
+
+    public function getAllReservations(): array;
 }

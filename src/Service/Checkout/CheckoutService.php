@@ -5,18 +5,23 @@ namespace App\Service\Checkout;
 
 
 use App\Entity\Checkout;
+use App\Entity\Menu;
 use App\Repository\CheckoutRepository;
+use App\Service\Menu\MenuService;
+use App\Service\Menu\MenuServiceInterface;
 use App\Service\Users\UserServiceInterface;
 
 class CheckoutService implements CheckoutServiceInterface
 {
     private $checkoutRepository;
     private $userService;
+    private $menuService;
 
-    public function __construct(CheckoutRepository $checkoutRepository,UserServiceInterface $userService)
+    public function __construct(CheckoutRepository $checkoutRepository, UserServiceInterface $userService, MenuServiceInterface $menuService)
     {
         $this->checkoutRepository = $checkoutRepository;
-        $this->userService=$userService;
+        $this->userService = $userService;
+        $this->menuService = $menuService;
     }
 
 
@@ -30,17 +35,35 @@ class CheckoutService implements CheckoutServiceInterface
     public function findByUser(): array
     {
         $user = $this->userService->currentUser();
-        return $this->checkoutRepository->findBy(['customer'=>$user->getId()]);
+        return $this->checkoutRepository->findBy(['customer' => $user->getId()]);
     }
+
     public function findOneByUser(int $id): ?Checkout
     {
         $user = $this->userService->currentUser();
-        return $this->checkoutRepository->findOneBy(['id'=>$id]);
+        return $this->checkoutRepository->findOneBy(['id' => $id]);
+    }
+
+    public function totalTurnover(): array
+    {
+        $id = $this->userService->currentUser()->getId();
+        return $this->checkoutRepository->findBy(['user' => $id,'status'=>1]);
     }
 
     public function findAll(): array
     {
         return $this->checkoutRepository->findAll();
+    }
+
+    public function findAllOrders(): array
+    {
+        return $this->checkoutRepository->findBy(['confirmed' => 1]);
+    }
+
+    public function findAllOrdersDay(): array
+    {
+        $date = new \DateTime('now');
+        return $this->checkoutRepository->findBy(['confirmed' => 1, 'updateAt' => $date]);
     }
 
     public function orderGenerate()
@@ -67,4 +90,50 @@ class CheckoutService implements CheckoutServiceInterface
         return $newOrder;
     }
 
+    public function findIncomeDay()
+    {
+        $date = new \DateTime('now');
+        $checkouts = $this->checkoutRepository->findBy(['confirmed' => 1, 'updateAt' => $date]);
+        $menu = $this->menuService->allMenu();
+        $incomeDay = 0;
+        foreach ($menu as $menus) {
+            /**
+             * @var Menu $menus
+             */
+            foreach ($checkouts as $checkout) {
+                foreach ($checkout->getProduct() as $product) {
+                    foreach ($product as $item => $value)
+                        if ($menus->getId() == $item) {
+                            $price = ($menus->getPrice() / 100) * $value;
+                            $incomeDay += $price;
+                        }
+                }
+            }
+        }
+        return $incomeDay;
+
+    }
+
+    public function findIncome()
+    {
+        $checkouts = $this->checkoutRepository->findBy(['confirmed' => 1]);
+        $menus = $this->menuService->allMenu();
+        $income = 0;
+        foreach ($menus as $menu) {
+            /**
+             * @var Menu $menu
+             */
+            foreach ($checkouts as $checkout) {
+                foreach ($checkout->getProduct() as $product) {
+                    foreach ($product as $item => $value)
+                        if ($menu->getId() == $item) {
+                            $price = ($menu->getPrice() / 100) * $value;
+                            $income += $price;
+                        }
+                }
+            }
+        }
+        return $income;
+
+    }
 }

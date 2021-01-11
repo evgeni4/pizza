@@ -63,6 +63,11 @@ class Checkout
      */
     private $confirmed = false;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $updateAt;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -165,6 +170,18 @@ class Checkout
     public function setConfirmed(bool $confirmed): self
     {
         $this->confirmed = $confirmed;
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    {
+        $this->updateAt = $updateAt;
 
         return $this;
     }

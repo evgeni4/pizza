@@ -4,6 +4,12 @@ twig:
         cart: '@App\Service\Cart\CartServiceInterface'
         discount: '@App\Service\Discount\DiscountService'
         findOneCheckout: '@App\Service\Checkout\CheckoutService'
+        findIncomes: '@App\Service\Checkout\CheckoutServiceInterface'
+        findIncomesDay: '@App\Service\Checkout\CheckoutServiceInterface'
+        findAllOrders: '@App\Service\Checkout\CheckoutServiceInterface'
+        findAllOrdersDay: '@App\Service\Checkout\CheckoutServiceInterface'
+        customerAll: '@App\Service\Users\UserServiceInterface'
+        reservations: '@App\Service\Reservations\ReservationsServiceInterface'
     default_path: '%kernel.project_dir%/templates'
     form_themes:
       - bootstrap_4_layout.html.twig

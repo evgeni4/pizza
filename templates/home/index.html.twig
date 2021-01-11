@@ -175,12 +175,12 @@
                 <div class="uk-width-1-1">
                     <div class="uk-panel uk-text-center uk-contrast">
 
-                        <h2 class="uk-module-title-alt uk-margin-large-bottom">Today's Specials</h2>
+                        <h2 class="uk-module-title-alt uk-margin-large-bottom">Днешните промоции</h2>
                         <div class="tm-slideset-gaucho uk-contrast" data-uk-slideset="{default: 1,small: 2,medium: 2,large: 3, xlarge: 3, animation: 'fade'}">
 
                             <!-- data filters -->
                             <ul class="uk-subnav uk-flex-center">
-                                <li data-uk-filter=""><a href="#">All</a></li>
+                                <li data-uk-filter=""><a href="#">Всичко</a></li>
                                 {% for specials in categorySpecials %}
                                     <li data-uk-filter="{{ specials.title }}"><a href="#">{{ specials.title }}</a></li>
                                 {% endfor %}

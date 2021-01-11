@@ -42,4 +42,9 @@ class ReservationsService implements ReservationsServiceInterface
     {
         return $this->reservationsRepository->delete($reservations);
     }
+
+    public function getAllReservations(): array
+    {
+        return $this->reservationsRepository->findBy(['confirmed'=>1]);
+    }
 }

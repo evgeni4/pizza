@@ -115,6 +115,11 @@ class User implements UserInterface
      */
     private $userCheckout;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banned;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
@@ -438,6 +443,18 @@ class User implements UserInterface
                 $userCheckout->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }

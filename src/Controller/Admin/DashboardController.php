@@ -15,6 +15,8 @@ use App\Entity\Settings;
 use App\Entity\Slider;
 use App\Entity\Specials;
 use App\Entity\User;
+use App\Repository\UserRepository;
+use App\Service\Users\UserServiceInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -23,6 +25,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    private $userService;
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * @Route("/admin", name="admin")
      */
@@ -33,43 +40,51 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()
-            ->setTitle('Brown Coffee');
+        $customer = $this->userService->customer();
+        return Dashboard::new() ->setTitle('Администрация');
     }
 
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linktoDashboard('Начало', 'fa fa-home'),
-
-            MenuItem::linkToCrud('Поръчки', 'fa fa-home',Checkout::class),
-
-            MenuItem::subMenu('Категории', 'fa fa-home')
+            MenuItem::linktoDashboard('Начало', 'fa fa-home')
+                ->setCssClass('sidebar-link'),
+            MenuItem::subMenu('Категории', 'uk-icon-inbox')
+                ->setCssClass('sidebar-link collapsed')
                 ->setSubItems([
-                    MenuItem::linkToCrud('Категории', 'fa fa-home', Categories::class),
-                    MenuItem::linkToCrud('Промоции', 'fa fa-home', CategorySpecials::class),
+                    MenuItem::linkToCrud('Категории', '', Categories::class)->setCssClass('sidebar-link',),
+                    MenuItem::linkToCrud('Промоции', '', CategorySpecials::class)->setCssClass('sidebar-link',),
                 ]),
-            MenuItem::subMenu('Меню', 'fa fa-home')
+            MenuItem::subMenu('Ястия', 'uk-icon-cutlery')
+                ->setCssClass('sidebar-link collapsed')
                 ->setSubItems([
-                    MenuItem::linkToCrud('Меню', 'fa fa-home', Menu::class),
-                    MenuItem::linkToCrud('Промоции', 'fa fa-home', Specials::class),
+                    MenuItem::linkToCrud('Ястия', '', Menu::class)->setCssClass('sidebar-link',),
+                    MenuItem::linkToCrud('Промоции  на ястия', '', Specials::class)->setCssClass('sidebar-link',),
+                ]),
+            MenuItem::subMenu('Поръчки', 'icon-2')
+                ->setCssClass('sidebar-link collapsed')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Поръчки', 'icon-2',Checkout::class)->setCssClass('sidebar-link'),
+                    MenuItem::linkToCrud('Доставка', 'fa fa-car', Delivery::class)->setCssClass('sidebar-link',)
                 ]),
 
-              MenuItem::linkToCrud('Тип на поръчка', 'fa fa-car', Delivery::class),
-
+            MenuItem::linkToCrud('Отстъпки', 'uk-icon-percent', Discount::class)->setCssClass('sidebar-link',),
             MenuItem::subMenu('Потребители', 'fa fa-users')
+                ->setCssClass('sidebar-link collapsed')
                 ->setSubItems(
                     [
-                        MenuItem::linkToCrud('Клиенти', 'fa fa-users', User::class)
+                        MenuItem::linkToCrud('Клиенти', 'fa fa-users', User::class)->setCssClass('sidebar-link',)
                     ]
                 ),
-            MenuItem::linkToCrud('Slider', 'fa fa-home', Slider::class),
-            MenuItem::linkToCrud('Резервации', 'fa fa-home', Reservations::class),
-            MenuItem::linkToCrud('Контакти', 'fa fa-home', Contacts::class),
-            MenuItem::linkToCrud('Настройки', 'fa fa-home', Settings::class),
-            MenuItem::linkToCrud('Събития', 'fa fa-home', Events::class),
-            MenuItem::linkToCrud('Отстъпки', 'fa fa-home', Discount::class),
-            MenuItem::linkToLogout('Изход', 'fa fa-sign-out'),
+            MenuItem::linkToCrud('Резервации', 'uk-icon-phone', Reservations::class)->setCssClass('sidebar-link',),
+            MenuItem::linkToCrud('Контакти', 'uk-icon-headphones', Contacts::class)->setCssClass('sidebar-link',),
+            MenuItem::linkToCrud('Събития', 'uk-icon-calendar', Events::class)->setCssClass('sidebar-link',),
+            MenuItem::subMenu('Настройки','uk-icon-cogs')->setCssClass('sidebar-link collapsed')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Slider', 'uk-icon-file-image-o', Slider::class)->setCssClass('sidebar-link',),
+                    MenuItem::linkToCrud('Настройки на сайта', 'uk-icon-cogs', Settings::class)->setCssClass('sidebar-link',),
+                ]),
+            MenuItem::linkToLogout('Изход', 'fa fa-sign-out')->setCssClass('sidebar-link',),
         ];
 
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);

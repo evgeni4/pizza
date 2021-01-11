@@ -179,6 +179,7 @@ class CartController extends AbstractController
                 $checkout->setProduct((array)$array);
                $this->cartService->remove($cartCurrent);
             }
+
             $this->checkoutService->add($checkout);
            return $this->redirectToRoute('app_order_history');
         }

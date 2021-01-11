@@ -28,4 +28,9 @@ class UserService implements UserServiceInterface
     {
         return $this->userRepository->update($user);
     }
+
+    public function customer(): array
+    {
+        return $this->userRepository->findBy(['banned'=>0]);
+    }
 }

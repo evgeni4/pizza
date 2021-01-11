@@ -49,7 +49,8 @@ class CheckoutCrudController extends AbstractCrudController
             })
             ->remove(Crud::PAGE_INDEX, Action::DELETE)
             ->remove(Crud::PAGE_INDEX, Action::EDIT)
-            ->remove(Crud::PAGE_DETAIL, Action::EDIT)
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
+            //->remove(Crud::PAGE_DETAIL, Action::EDIT)
             ->remove(Crud::PAGE_DETAIL, Action::DELETE);
     }
 
@@ -58,9 +59,10 @@ class CheckoutCrudController extends AbstractCrudController
         return [
             IdField::new('id','ID#')->onlyOnDetail(),
             TextField::new('orders','Поръчка №'),
-            TextField::new('customer','Клиент'),
+            TextField::new('customer','Клиент')->onlyOnDetail(),
             CollectionField::new('delivery','Подробности')->onlyOnDetail(),
             BooleanField::new('confirmed','Потвърдено'),
+            DateTimeField::new('updateAt','Потвърдено')->setFormat('dd/MM/yyyy'),
             DateTimeField::new('createdAt','Дата/Час')->setFormat('dd/MM/yyyy H:mm'),
         ];
     }
@@ -68,7 +70,7 @@ class CheckoutCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('index','Всички поръчки')
-            ->setPageTitle('detail','Детайли напоръчката')
+            ->setPageTitle('detail','Детайли на поръчката')
             ->setPageTitle('edit','Редактиране на поръчката');
 //            ->overrideTemplates([
 //                'crud/detail' => 'admin/pages/details.html.twig',

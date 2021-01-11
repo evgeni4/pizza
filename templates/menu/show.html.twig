@@ -18,11 +18,11 @@
                                 <div data-uk-parallax="{opacity: '1,0', y: '-50'}">
 
                                     <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:300}">
-                                        <h1 class="uk-module-title-alt uk-margin-top">Our Menu</h1>
+                                        <h1 class="uk-module-title-alt uk-margin-top">Нашето меню</h1>
                                     </div>
 
                                     <div data-uk-scrollspy="{cls:'uk-animation-slide-top', delay:800}">
-                                        <h5 class="uk-sub-title-small">The true taste of good design</h5>
+                                        <h5 class="uk-sub-title-small">Истинският вкус на добрия дизайн</h5>
                                     </div>
 
                                 </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
         {% endif %}
-        <div id="{{ category.title }}" class="tm-block-top-c uk-block uk-block-default">
+        <div id="{{ category.id }}" class="tm-block-top-c uk-block uk-block-default">
             <div class="uk-container uk-container-center">
                 <section class="tm-top-c uk-grid" data-uk-grid-match="{target:'> div > .uk-panel'}"
                          data-uk-grid-margin>
@@ -150,7 +150,7 @@
         <ul class="uk-dotnav uk-flex-column" data-uk-scrollspy-nav="{closest:'li', smoothscroll:true}">
             {% for category in categories %}
                 <li><a title="{{ category.title }}" data-uk-tooltip="{pos: 'left', offset: 20}"
-                       href="#{{ category.title }}">Item</a></li>
+                       href="#{{ category.id }}">Item</a></li>
             {% endfor %}
         </ul>
     </div>
